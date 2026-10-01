@@ -1,0 +1,13 @@
+[package]
+name = "unity"
+version = "0.3.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+skyline = "0.6"
+unity-macro = { path = "./unity-macro" }
+memoffset = { version = "0.8.0" }
+thiserror = { version = "1" }
+lazysimd = { path = "../lazysimd" }

@@ -1,0 +1,9 @@
+Expanded Accessory Slots / EngageAcc_Code
+Author: SierraSak
+Source: https://github.com/SierraSak/EngageAcc_Code
+Baseline commit: e87b62b8393c8048fc40455634a8aa7613b68efb
+The checked-out upstream repository has no standalone LICENSE/README file.
+Original equipment slot implementation, save version 1 and resource PNGs retained.
+Local changes: modern Rust/skyline compatibility, camera positions, unified entry point,
+equipment summary rows, menu navigation and Engage outfit preference integration.
+Dependencies keep their own source metadata and license files.

@@ -1,0 +1,24 @@
+[package]
+name = "engage_outfit_menu_enhancements"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-3.0-only"
+[workspace]
+exclude = ["dependencies/engage-il2cpp-0.1.0-reconstructed", "tools/nro-converter"]
+[dependencies]
+skyline = "0.6"
+horizon-svc = { path = "dependencies/horizon-svc", features = ["svc-impl"] }
+unity-nx = { path = "dependencies/unity-nx-0.1.0-local" }
+engage-il2cpp = { path = "dependencies/engage-il2cpp-0.1.0-reconstructed", default-features = false, features = ["app-basicmenu", "app-basicmenuitem", "app-basicmenucontent", "app-procdesc", "system-collections-generic-list_1", "app-procinst", "root-configbasicmenuitem", "app-language"] }
+engage_legacy = { package = "engage", path = "dependencies/engage" }
+unity_legacy = { package = "unity", path = "dependencies/unity" }
+include_dir = "0.7"
+
+[lib]
+crate-type = ["cdylib"]
+[profile.release]
+panic = "abort"
+lto = "thin"
+strip = true
+[patch.crates-io]
+getrandom = { git = "https://github.com/skyline-rs/getrandom" }

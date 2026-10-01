@@ -1,0 +1,12 @@
+engage-outfit-menu-enhancements
+Project-owned additions and documentation: GNU General Public License version 3 only.
+Combined program distribution must comply with GPLv3.
+Third-party and upstream-derived portions retain their original notices and terms.
+
+Required runtime: Cobalt — https://github.com/Raytwo/Cobalt
+Thank you to Raytwo for Cobalt and its mod-loading foundation.
+Based on and modified from SierraSak/EngageAcc_Code — https://github.com/SierraSak/EngageAcc_Code
+Expanded Accessory Slots — https://gamebanana.com/mods/512066
+Thank you to SierraSak for the original implementation and resources.
+
+See THIRD_PARTY.md for source attribution and licensing scope.
