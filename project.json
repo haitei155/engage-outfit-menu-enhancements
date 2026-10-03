@@ -6,10 +6,10 @@
   "game_version": "2.0.0",
   "cobalt_baseline": "1.31.0",
   "license": "GPL-3.0-only (project-owned contributions and combined distribution; see THIRD_PARTY.md)",
-  "prepared": "2026-10-02",
-  "source_status": "Release source snapshot; see Releases/RELEASE_NOTES.md for binary provenance and validation.",
-  "release_tag": "v0.1",
+  "prepared": "2026-10-03",
+  "source_status": "v0.2 source synchronized with tested native-fade-v8 implementation; binary SHA256 and provenance in Releases/RELEASE_NOTES.md",
+  "release_tag": "v0.2",
   "published": true,
   "repository": "https://github.com/haitei155/engage-outfit-menu-enhancements",
-  "publication_status": "Published v0.1 after explicit user approval"
+  "publication_status": "Published v0.2 after explicit user approval"
 }

@@ -17,9 +17,10 @@ thread_local! {
     static EMBLEM_PASS: Cell<bool> = const { Cell::new(false) };
 }
 fn log(s: &str) {
+    if !crate::debug_enabled() { return; }
     let line = format!("[FEE Engage Outfit v4] {s}\n");
     let _ = horizon_svc::output_debug_string(&line);
-    if let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open("sd:/engage/fee-engage-outfit-v4.log") {
+    if let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open("sd:/engage/fee-outfit-menu-debug.log") {
         let _ = f.write_all(line.as_bytes());
     }
 }
@@ -179,10 +180,10 @@ unsafe fn fee_outfit_v1_full(result: P, mode: i32, person: P, job: P, god: P, eq
         EMBLEM_PASS.with(|f| f.set(false));
         let actual = call_original!(result, mode, person, job, god, equipped, force, state, dark, conditions, method);
         clothes.apply(actual, mode, "emblem attack");
-        return crate::obody_trace::resolved(actual, mode, std::ptr::null_mut(), state, false);
+        return crate::obody_trace::resolved_full(actual, mode, person, god, equipped, state, false);
     }
     if !KEEP_CURRENT.load(Ordering::Relaxed) || !matches!(mode, 1 | 2) || !matches!(state, 1..=4) || result.is_null() || ORDINARY_PASS.with(Cell::get) || EMBLEM_PASS.with(Cell::get) {
-        return crate::obody_trace::resolved(call_original!(result, mode, person, job, god, equipped, force, state, dark, conditions, method), mode, std::ptr::null_mut(), state, ORDINARY_PASS.with(Cell::get) || EMBLEM_PASS.with(Cell::get));
+        return crate::obody_trace::resolved_full(call_original!(result, mode, person, job, god, equipped, force, state, dark, conditions, method), mode, person, god, equipped, state, ORDINARY_PASS.with(Cell::get) || EMBLEM_PASS.with(Cell::get));
     }
     ORDINARY_PASS.with(|f| f.set(true));
     let normal = call_original!(result, mode, person, job, god, equipped, force, state, dark, conditions, method);
@@ -190,7 +191,7 @@ unsafe fn fee_outfit_v1_full(result: P, mode: i32, person: P, job: P, god: P, eq
     ORDINARY_PASS.with(|f| f.set(false));
     let actual = call_original!(result, mode, person, job, god, equipped, force, state, dark, conditions, method);
     clothes.apply(actual, mode, "current");
-    crate::obody_trace::resolved(actual, mode, std::ptr::null_mut(), state, false)
+    crate::obody_trace::resolved_full(actual, mode, person, god, equipped, state, false)
 }
 pub fn install() {
     KEEP_CURRENT.store(std::fs::read_to_string(SETTING).map(|s| text::decode_setting(&s)).unwrap_or(false), Ordering::Relaxed);

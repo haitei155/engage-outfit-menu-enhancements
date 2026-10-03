@@ -1,6 +1,6 @@
 [package]
 name = "engage_outfit_menu_enhancements"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 license = "GPL-3.0-only"
 [workspace]
@@ -9,7 +9,7 @@ exclude = ["dependencies/engage-il2cpp-0.1.0-reconstructed", "tools/nro-converte
 skyline = "0.6"
 horizon-svc = { path = "dependencies/horizon-svc", features = ["svc-impl"] }
 unity-nx = { path = "dependencies/unity-nx-0.1.0-local" }
-engage-il2cpp = { path = "dependencies/engage-il2cpp-0.1.0-reconstructed", default-features = false, features = ["app-basicmenu", "app-basicmenuitem", "app-basicmenucontent", "app-procdesc", "system-collections-generic-list_1", "app-procinst", "root-configbasicmenuitem", "app-language"] }
+engage-il2cpp = { path = "dependencies/engage-il2cpp-0.1.0-reconstructed", default-features = false, features = ["app-basicmenu", "app-basicmenuitem", "app-basicmenucontent", "app-procdesc", "app-fade", "app-procdescwaittrue", "app-unitactor", "system-collections-generic-list_1", "system-action", "app-procinst", "app-procscenemanager", "app-hubaccessoryroomcamera", "app-hubaccessoryroom-types", "unity_engine-renderer", "unity_engine-light", "unity_engine-rect", "unity_engine-scene_management-scenemanager", "unity_engine-scene_management-scene", "unity_engine-scene_management-loadscenemode", "root-configbasicmenuitem", "app-language", "app-pad", "app-sortietopmenu", "app-sortietopmenushopsubmenu", "app-hubaccessoryshopsequence", "app-force", "app-unit", "app-unitaccessorylist", "app-unitaccessory", "app-assettable", "app-accessoryshopunitselectroot", "app-accessoryshopbuyroot", "app-accessoryshopchangeroot", "app-accessorydata", "app-backgroundmanager", "combat-characterappearance", "combat-characterfactoryasync", "combat-character", "unity_engine-gameobject", "unity_engine-transform", "unity_engine-canvas", "unity_engine-recttransform", "unity_engine-rendermode", "unity_engine-vector2", "unity_engine-vector3", "unity_engine-camera", "unity_engine-behaviour", "unity_engine-time", "unity_engine-animator", "root_motion-final_ik-grounderfbbik-types", "root_motion-final_ik-fullbodybipedik-types", "unity_engine-cameraclearflags", "unity_engine-color", "unity_engine-ui-rawimage", "unity_engine-ui-graphic", "unity_engine-object_2", "root-mapinfoiconlocatorroot-types", "unity_engine-rendertexture", "unity_engine-texture"] }
 engage_legacy = { package = "engage", path = "dependencies/engage" }
 unity_legacy = { package = "unity", path = "dependencies/unity" }
 include_dir = "0.7"

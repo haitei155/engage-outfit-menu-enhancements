@@ -25,10 +25,11 @@ unsafe fn reference(p: P, offset: usize, value: P) {
     native!(0x491fb0, (); P => p.add(offset), P => value);
 }
 fn log(s: &str) {
+    if !crate::debug_enabled() { return; }
     let line = format!("[FEE Outfit Enhancements] {s}\n");
     let _ = horizon_svc::output_debug_string(&line);
     if let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true)
-        .open("sd:/engage/fee-outfit-enhancements.log") {
+        .open("sd:/engage/fee-outfit-menu-debug.log") {
         let _ = f.write_all(line.as_bytes());
     }
 }
@@ -196,6 +197,10 @@ unsafe fn fee_accessory_filter(kind: i32, unit: P, method: OptionalMethod) -> P 
 // OnSelect, help/preview events, cursor sound and result handling after our selection move.
 #[skyline::hook(offset = 0x245ed80)]
 unsafe fn fee_accessory_input(menu: BasicMenu, method: OptionalMethod) -> bool {
+    if crate::sortie_accessory::is_open() && crate::sortie_transition::input_blocked() {
+        crate::sortie_accessory::tick_preview_input(menu);
+        return false;
+    }
     let (eligible, accessory) = if menu.is_null() { (false, false) } else {
         let class = menu.get_class();
         let name = class.name();
@@ -241,6 +246,7 @@ unsafe fn fee_accessory_input(menu: BasicMenu, method: OptionalMethod) -> bool {
         }
     }
     let result = call_original!(menu, method);
+    crate::sortie_accessory::tick_preview_input(menu);
     if accessory || (!menu.is_null() && menu.get_class().namespace() == "App"
         && menu.get_class().name() == "AccessoryShopBuyMenu") {
         header_colors(menu.as_instance().as_ptr() as P);

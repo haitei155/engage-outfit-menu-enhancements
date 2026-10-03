@@ -1,28 +1,34 @@
-# v0.1 — 衣装、饰品与菜单增强 / Outfit, Accessory and Menu Enhancements
+# v0.2 — 战前实时换装 / Live dressing in battle preparations
 
-七个角色可用饰品分类、购买分类筛选与装备摘要、头饰与风格镜头、“结合时服装”设置，以及多个菜单的 ZL/ZR 整页翻动。Mask 16 不作为角色可用槽；底层八项存储及 version 1 存档格式保持。
+在战斗准备“据点索拉涅尔”子菜单新增“装饰品店”，位于锻造店与特技继承之间。进入原生店铺场景实时试穿，支持右摇杆旋转和缩放；确认装备后返回即可刷新战场形象，方便战前换装。店内隐藏战场图标，退出恢复；原生淡出／淡入等待人物加载完成。全部七个可见分类参与最终装备差分，只刷新实际修改过的我方战场人物。
 
-Seven character accessory categories, purchase filters and equipment summaries, accessory cameras, Engage outfit preference and ZL/ZR paging across supported menus. Mask 16 is not a character slot. The eight-entry storage layout and version 1 save format are retained.
+Adds Accessory Shop below the Smithy in the preparation Somniel submenu. Use native-scene live previews and right-stick rotation/zoom, then confirm equipment and return to refresh the battlefield appearance. Battlefield overlays hide in the shop and restore on exit. Native fades wait for character loading. Final equipment across all seven visible categories is compared; only changed player actors refresh.
+
+七分类、装备摘要、ZL/ZR翻页及“结合时服装”是v0.1已有功能，v0.2继续保留。截图统一1280×720 JPG。
+
+Seven categories, equipment summaries, ZL/ZR paging and the Engage outfit preference are retained from v0.1. Screenshots use 1280×720 JPG.
+
+## 日志 / Logging
+
+默认不输出插件诊断日志。需要时，在SD卡engage目录建立UTF-8文件fee-outfit-menu-debug.flag，内容写on并完整重启。日志追加到sd:/engage/fee-outfit-menu-debug.log。删除标志文件或写off并完整重启可关闭；进程首次读取后缓存，旧日志保留。详细步骤见双语README。
+
+Diagnostics are off by default. To enable, create the UTF-8 file engage/fee-outfit-menu-debug.flag on the SD card containing on, then fully restart. Output appends to sd:/engage/fee-outfit-menu-debug.log. Delete the flag or write off and fully restart to disable. The value is cached after its first read; old logs remain. See the README for full instructions.
 
 ## 安装 / Installation
 
-先安装 [Cobalt](https://github.com/Raytwo/Cobalt)。下载 `engage_outfit_menu_enhancements.nro`，放入 `engage/mods/engage-outfit-menu-enhancements/`，完整重启游戏。如果整合包已包含本插件，使用包内版本，避免重复加载。
+先安装[Cobalt](https://github.com/Raytwo/Cobalt)。将engage_outfit_menu_enhancements.nro放入engage/mods/engage-outfit-menu-enhancements/，完整重启。整合包已含本插件时使用包内副本，避免重复安装。
 
-Install Cobalt first. Place `engage_outfit_menu_enhancements.nro` in `engage/mods/engage-outfit-menu-enhancements/` and fully restart the game. Use the included copy when an integration package already provides the plugin.
+Install Cobalt first. Place engage_outfit_menu_enhancements.nro in engage/mods/engage-outfit-menu-enhancements/ and fully restart. Use the included copy if an integration package already supplies this plugin.
 
 基线 / Baseline: Fire Emblem Engage 2.0.0 / Cobalt 1.31.0.
 
-## 验证 / Validation
+## 验证与编译版来源 / Validation and binary provenance
 
-当前 NRO 来自现用服装整合包，仅外部改名，原字节保持。 / Existing binary from the current outfit integration package, renamed without changing its bytes.
+2026-10-03用户确认当前v0.2功能通过。发布源码与已测试的原生转场版（native-fade-v8）一致；发行NRO取自同版整合包，原字节保持。静态验证包括NRO0/MOD0、SHA-256、ZIP CRC和其他成员一致性；发布项目另进行离线锁定Switch重建验证。
 
-SHA-256: `c394a8a9ed4ef2b20fd2e665a5877563610567605048778a35b661a0ff3ec984`；下载资产含 `SHA256SUMS`。
+The user confirmed current v0.2 functionality on 2026-10-03. Published source matches the tested native-fade-v8 implementation. The release NRO is copied unchanged from that integration build. Static validation includes NRO0/MOD0, SHA-256, ZIP CRC and unchanged-member checks; the publication project also undergoes a locked offline Switch rebuild.
 
-许可、来源与致谢见仓库 LICENSE、NOTICE、THIRD_PARTY.md 和 README。
-See LICENSE, NOTICE, THIRD_PARTY.md and README for licensing, origins and credits.
+SHA-256: `95d74f95d615028d787ef95060227f6bedd1f012c05620980c605d806ec5f5e9`.
 
-## 结合时服装设置 / Engage Outfit Setting
-
-在“系统”→“环境设置”中，可选择“结合时服装：角色当前服装／纹章士服装”。战斗中也可即时切换并观察到效果，但切换后已经结合的地图形象需重新结合或重新出击才能生效。龙化等特殊变身将保持现有规则不变。截图见仓库 README。
-
-Under System → Settings, choose the current character outfit or emblem outfit for Engage. The setting can also be switched during battle and its effect observed; already-engaged map models require re-engaging or redeploying before the change takes effect. Special transformations, such as dragon transformation, retain their existing rules. See the README for the screenshot.
+许可、来源与致谢见LICENSE、NOTICE、THIRD_PARTY.md及README。
+See LICENSE, NOTICE, THIRD_PARTY.md and README for licenses, origins and credits.
