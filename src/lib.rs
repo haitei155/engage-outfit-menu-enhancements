@@ -24,7 +24,7 @@ pub(crate) fn debug_enabled() -> bool {
 #[skyline::main(name = "engage_outfit_enhancements")]
 pub fn main() {
     if !expanded::supported() || !outfit::supported() || !navigation::supported() || !native_accessory_scene::supported() || !sortie_backdrop::supported() || !sortie_transition::supported() {
-        if debug_enabled() { let _ = horizon_svc::output_debug_string("[FEE Outfit Menu v0.2] unsupported executable; no hooks installed\n"); }
+        if debug_enabled() { let _ = horizon_svc::output_debug_string("[FEE Outfit Menu v0.3] unsupported executable; no hooks installed\n"); }
         return;
     }
     expanded::install();

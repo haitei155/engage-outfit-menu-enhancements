@@ -23,7 +23,7 @@ The first build may download dependencies locked in Cargo.lock. Add `--offline` 
 - `tools/rustc-wrapper.rs` supplies `-Zunstable-options` for the custom target.
 - `tools/build.py` resolves the linker script relative to this project at build time.
 - Generated `dist/*.nro` is a new build, and need not be byte-identical to `Releases/*.nro` because package names, paths or compiler metadata can differ.
-- `Releases/*.nro` is the tested v0.2 native-fade-v8 binary copied unchanged from the integration package. The user confirmed v0.2 functionality on 2026-10-03. The publication source is rebuilt separately in `dist/` for verification; the tested release binary is preserved. Its SHA-256 and provenance are recorded in `Releases/RELEASE_NOTES.md`.
+- `Releases/*.nro` contains the v0.3 release binary. `Releases/SHA256SUMS` records its SHA-256. Use the matching source and toolchain to rebuild in `dist/`.
 
 ## 主机工具编译器 / Host compiler
 

@@ -211,7 +211,11 @@ unsafe fn fee_accessory_input(menu: BasicMenu, method: OptionalMethod) -> bool {
         let custom_unused = extra && menu_scope::custom_allowed(&ns, &name,
             (class.raw().get_vtable()[58].method_ptr as usize).wrapping_sub(unity::module_base()));
         (accessory || (extra && custom_unused && menu_scope::context_allowed(menu))
-            || menu_scope::inventory_trade_allowed(menu), accessory)
+            || menu_scope::inventory_paging_allowed(menu)
+            || menu_scope::ring_ability_allowed(menu)
+            || menu_scope::ring_catalog_allowed(menu)
+            || menu_scope::sell_allowed(menu)
+            || class_change::paging_allowed(menu), accessory)
     };
     if eligible
         && !menu.is_input_disable() && !menu.is_input_disable_now_frame()
@@ -246,6 +250,7 @@ unsafe fn fee_accessory_input(menu: BasicMenu, method: OptionalMethod) -> bool {
         }
     }
     let result = call_original!(menu, method);
+    key_help::update(menu, eligible);
     crate::sortie_accessory::tick_preview_input(menu);
     if accessory || (!menu.is_null() && menu.get_class().namespace() == "App"
         && menu.get_class().name() == "AccessoryShopBuyMenu") {
@@ -256,8 +261,10 @@ unsafe fn fee_accessory_input(menu: BasicMenu, method: OptionalMethod) -> bool {
 pub fn install() {
     log("install begin; Engage 2.0.0; Expanded Accessory Slots required");
     // Generated from the locally extracted 2.0.0 code image; validate before any mutation.
-    if !guards::valid() { log("native instruction mismatch; plugin disabled"); return; }
+    if !guards::valid() || !key_help::valid() { log("native instruction mismatch; plugin disabled"); return; }
     skyline::install_hooks!(fee_accessory_ctor, fee_accessory_filter, fee_accessory_input);
+    class_change::install();
+    key_help::install();
     equipment::install();
     shop::install();
     log("installed navigation and seven-row equipment summary hooks");
@@ -265,8 +272,11 @@ pub fn install() {
 mod guards;
 mod menu_scope;
 
-pub fn supported() -> bool { guards::valid() }
+pub fn supported() -> bool { guards::valid() && key_help::valid() }
 
 mod equipment;
 
 mod shop;
+mod class_change;
+
+mod key_help;

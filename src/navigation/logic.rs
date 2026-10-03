@@ -13,7 +13,7 @@ pub fn character_menu(namespace: &str, name: &str) -> bool {
     (namespace == "App" && matches!(name,
         "ArenaExpUnitSelectMenu" | "ArenaBondUnitSelectMenu" | "FortuneTellingUnitSelectMenu" |
         "UnitSelectMenu" | "UnitSelectAllUnitMenu" | "UnitSelectRingMenu" | "UnitSelectSortieMenu" |
-        "GodUnitSelectMenu" | "GodRoomUnitSelectMenu" |
+        "GodUnitSelectMenu" | "GodRoomUnitSelectMenu" | "RingSelectMenu" |
         "SortieRelianceSelectionUnitMenu" | "SortieRelianceSelectionPartnerMenu" |
         "MyRoomRelianceSelect" | "MyRoomRelianceSubSelect" |
         "ShopUnitSelectMenu" | "WeaponShopBuyMenu" | "ItemShopBuyMenu" | "AccessoryShopBuyMenu" |
